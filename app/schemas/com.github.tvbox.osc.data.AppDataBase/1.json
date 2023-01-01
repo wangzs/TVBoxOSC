@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d1c2780b5424f0e960fe2364f63c86b8",
+    "identityHash": "0b486e129b20c3667f49a1bcf37c2454",
     "entities": [
       {
         "tableName": "cache",
@@ -76,7 +76,7 @@
       },
       {
         "tableName": "vodCollect",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vodId` TEXT, `updateTime` INTEGER NOT NULL, `sourceKey` TEXT, `name` TEXT, `pic` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vodId` TEXT, `updateTime` INTEGER NOT NULL, `sourceKey` TEXT, `name` TEXT, `pic` TEXT, `note` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -113,6 +113,12 @@
             "columnName": "pic",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "note",
+            "columnName": "note",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -128,7 +134,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd1c2780b5424f0e960fe2364f63c86b8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0b486e129b20c3667f49a1bcf37c2454')"
     ]
   }
 }

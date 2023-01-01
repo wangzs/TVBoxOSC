@@ -21,11 +21,21 @@ public class VodCollect implements Serializable {
     @ColumnInfo(name = "pic")
     public String pic;
 
+    public String note = null;
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public static VodCollect newVodCollect(String name, String note, String pic) {
+        VodCollect v = new VodCollect();
+        v.name = name;
+        v.pic = pic;
+        v.note = note;
+        return v;
     }
 }

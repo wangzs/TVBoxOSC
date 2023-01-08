@@ -60,9 +60,6 @@
         <activity
             android:name=".ui.activity.CollectActivity"
             android:screenOrientation="landscape" />
-        <activity
-            android:name=".ui.activity.DouBanActivity"
-            android:screenOrientation="landscape" />
 
         <receiver android:name=".receiver.SearchReceiver">
             <intent-filter>

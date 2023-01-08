@@ -9,11 +9,11 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.tvbox.osc.R;
 import com.github.tvbox.osc.api.ApiConfig;
-import com.github.tvbox.osc.base.BaseActivity;
-import com.github.tvbox.osc.cache.RoomDataManger;
+import com.github.tvbox.osc.base.BaseLazyFragment;
 import com.github.tvbox.osc.cache.VodCollect;
 import com.github.tvbox.osc.event.RefreshEvent;
 import com.github.tvbox.osc.ui.adapter.CollectAdapter;
+import com.github.tvbox.osc.ui.fragment.UserFragment;
 import com.github.tvbox.osc.util.FastClickCheckUtil;
 import com.owen.tvrecyclerview.widget.TvRecyclerView;
 import com.owen.tvrecyclerview.widget.V7GridLayoutManager;
@@ -28,14 +28,16 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DouBanActivity extends BaseActivity {
-    private TextView tvDel;
-    private TvRecyclerView mGridView;
+public class DouBanFragment extends BaseLazyFragment {
+    public static DouBanFragment newInstance() {
+        return new DouBanFragment();
+    }
+
     private CollectAdapter collectAdapter;
 
     @Override
     protected int getLayoutResID() {
-        return R.layout.activity_collect;
+        return R.layout.fragment_douban;
     }
 
     @Override
@@ -46,13 +48,11 @@ public class DouBanActivity extends BaseActivity {
 
     private void initView() {
         EventBus.getDefault().register(this);
-        tvDel = findViewById(R.id.tvDel);
-        mGridView = findViewById(R.id.mGridView);
+        TvRecyclerView mGridView = findViewById(R.id.mGridView);
         mGridView.setHasFixedSize(true);
         mGridView.setLayoutManager(new V7GridLayoutManager(this.mContext, isBaseOnWidth() ? 5 : 6));
         collectAdapter = new CollectAdapter();
         mGridView.setAdapter(collectAdapter);
-        tvDel.setVisibility(View.GONE);
         mGridView.setOnItemListener(new TvRecyclerView.OnItemListener() {
             @Override
             public void onItemPreSelected(TvRecyclerView parent, View itemView, int position) {
@@ -97,7 +97,7 @@ public class DouBanActivity extends BaseActivity {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("douban250")));
+                    new InputStreamReader(requireActivity().getAssets().open("douban250")));
             // do reading, usually loop until end of file reading
             String mLine;
             while ((mLine = reader.readLine()) != null) {
@@ -130,7 +130,7 @@ public class DouBanActivity extends BaseActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }

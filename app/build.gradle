@@ -28,15 +28,15 @@ android {
             minifyEnabled false
 
             ndk {
-                abiFilters 'armeabi-v7a'
+                abiFilters 'armeabi-v7a', 'x86'
             }
         }
         release {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            minifyEnabled true
+            minifyEnabled false
 
             ndk {
-                abiFilters 'armeabi-v7a'
+                abiFilters 'armeabi-v7a', 'x86'
             }
         }
     }

@@ -47,8 +47,10 @@ public class DefaultConfig {
                 }
             }
         }
-        if (withMy)
-            data.add(0, new MovieSort.SortData("my0", "我的"));
+        if (withMy) {
+            data.add(0, new MovieSort.SortData(Constants.MOVIE_SORT_ID_0, "我的"));
+            data.add(1, new MovieSort.SortData(Constants.MOVIE_SORT_ID_1, "豆瓣电影250"));
+        }
         Collections.sort(data);
         return data;
     }
